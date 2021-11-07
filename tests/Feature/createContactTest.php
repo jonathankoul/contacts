@@ -31,8 +31,12 @@ class createContactTest extends TestCase
  
     }
 
-    /** @test */
-    function link_is_not_created_if_validation_fails() {}
+    function link_is_not_created_if_validation_fails()
+    {
+        $response = $this->post('/createcontact');
+
+        $response->assertSessionHasErrors(['first_name', 'last_name', 'phone','email','address']);
+    }
 
     /** @test */
     function link_is_not_created_with_an_invalid_url() {}
